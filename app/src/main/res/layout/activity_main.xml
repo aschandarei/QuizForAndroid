@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textview_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/textview_question"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:layout_weight="3"
+        android:scrollbars="vertical">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/checkboxA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/checkboxB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/checkboxC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/checkboxD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/checkboxE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonBack"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/button_back">
+        </Button>
+
+        <Button
+            android:id="@+id/buttonReveal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reveal"
+            style="?android:attr/buttonBarButtonStyle">
+        </Button>
+
+        <Button
+            android:id="@+id/buttonNext"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/button_next">
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>
