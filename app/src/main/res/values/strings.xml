@@ -3,4 +3,8 @@
     <string name="button_back">BACK</string>
     <string name="button_next">NEXT</string>
     <string name="reveal">Reveal</string>
+    <string name="hide">Hide</string>
+    <string name="wrong">Wrong!</string>
+    <string name="correct">Correct!</string>
+    <string name="incomplete">Not complete!</string>
 </resources>
