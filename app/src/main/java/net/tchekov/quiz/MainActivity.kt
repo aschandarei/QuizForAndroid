@@ -48,18 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         context = this
 
-        val buttonReveal = findViewById<Button>(R.id.buttonReveal)
-        buttonReveal.setOnClickListener {
-            reveal = if (buttonReveal.text == getString(R.string.reveal)) {
-                buttonReveal.setText(R.string.hide)
-                true
-            } else {
-                buttonReveal.setText(R.string.reveal)
-                false
-            }
-            setCheckBoxColor()
-        }
-
         val checkBoxA = findViewById<CheckBox>(R.id.checkboxA)
         val checkBoxB = findViewById<CheckBox>(R.id.checkboxB)
         val checkBoxC = findViewById<CheckBox>(R.id.checkboxC)
@@ -68,6 +56,8 @@ class MainActivity : AppCompatActivity() {
         checkBoxes = listOf(checkBoxA, checkBoxB, checkBoxC, checkBoxD, checkBoxE)
 
         resetBoxes()
+
+        val buttonReveal = findViewById<Button>(R.id.buttonReveal)
 
         val buttonBack = findViewById<Button>(R.id.buttonBack)
         buttonBack.setOnClickListener {
@@ -132,6 +122,23 @@ class MainActivity : AppCompatActivity() {
                 for (answer in question.answers) if (answer.correct) highScores++
             }
             highScoresString = "%.0f".format(highScores)
+
+            if (quiz.cheat) {
+                buttonReveal.setOnClickListener {
+                    reveal = if (buttonReveal.text == getString(R.string.reveal)) {
+                        buttonReveal.setText(R.string.hide)
+                        true
+                    } else {
+                        buttonReveal.setText(R.string.reveal)
+                        false
+                    }
+                    setCheckBoxColor()
+                }
+            } else {
+                buttonReveal.visibility = View.INVISIBLE
+            }
+
+
             askQuestion()
         } catch (e: Exception) {
             createToast(
