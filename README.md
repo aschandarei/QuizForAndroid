@@ -33,3 +33,11 @@ The JSON Structure is slightly different from the json for Desktop (Windows) app
       ]
   }
 ```
+
+Every correct answer will count as one point, so the maximal achievable points may be greater than the count of questions.
+
+The app calculates achieved scores and percentage after every answered question (press of button Next)
+
+Cheating is possible. Button Reveal will show which answers are correct.
+
+Button Back allows to go one question back - while resetting the achieved points for that question.
