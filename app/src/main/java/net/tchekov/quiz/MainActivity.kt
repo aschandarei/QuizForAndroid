@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Environment
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -15,8 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import com.google.gson.GsonBuilder
-import java.io.InputStream
-import java.util.*
+import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
@@ -90,16 +90,15 @@ class MainActivity : AppCompatActivity() {
 
             scored[index] = points
 
-            val dialog: Dialog
-            when (points) {
+            val dialog: Dialog = when (points) {
                 0.0F -> {
-                    dialog = createToast(getString(R.string.wrong), "#ffffff", "#ff0000")
+                    createToast(getString(R.string.wrong), "#ffffff", "#ff0000")
                 }
                 achievable -> {
-                    dialog = createToast(getString(R.string.correct), "#000000", "#00ff00")
+                    createToast(getString(R.string.correct), "#000000", "#00ff00")
                 }
                 else -> {
-                    dialog = createToast(getString(R.string.incomplete), "#000000", "#ffc300")
+                    createToast(getString(R.string.incomplete), "#000000", "#ffc300")
                 }
             }
 
@@ -116,22 +115,40 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
         textBoxQuestion = findViewById(R.id.textview_question)
         textBoxInfo = findViewById(R.id.textview_info)
 
-        val inputStream: InputStream = context.resources.openRawResource(R.raw.quiz)
-        val jsonString: String = Scanner(inputStream).useDelimiter("\\A").next()
-        val gson = GsonBuilder().create()
-        val quiz = gson.fromJson(jsonString, Quiz::class.java)
-        this.title = quiz.name
-        questions = quiz.questions.shuffled()
-        for (question in questions) {
-            scored.add(0.0F)
-            for (answer in question.answers) if (answer.correct) highScores++
+        val folderName = Environment.getDataDirectory().absolutePath
+        val quizFileName = getString(R.string.quiz_file_name)
+        try {
+            val quizFile = File(Environment.getDataDirectory(), quizFileName)
+            val jsonString: String = quizFile.readText()
+            val gson = GsonBuilder().create()
+            val quiz = gson.fromJson(jsonString, Quiz::class.java)
+            this.title = quiz.name
+            questions = quiz.questions.shuffled()
+            for (question in questions) {
+                scored.add(0.0F)
+                for (answer in question.answers) if (answer.correct) highScores++
+            }
+            highScoresString = "%.0f".format(highScores)
+            askQuestion()
+        } catch (e: Exception) {
+            createToast(
+                getString(
+                    R.string.quiz_file_missing,
+                    folderName,
+                    quizFileName
+                ), "#ffffff", "#ff0000"
+            )
+            buttonBack.visibility = View.INVISIBLE
+            buttonNext.visibility = View.INVISIBLE
+            buttonReveal.visibility = View.INVISIBLE
+            resetBoxes()
+            textBoxQuestion.textSize = 20.0F
+            textBoxQuestion.setTextColor(Color.DKGRAY)
+            textBoxQuestion.text = getString(R.string.quiz_setup, quizFileName, folderName)
         }
-        highScoresString = "%.0f".format(highScores)
-        askQuestion()
     }
 
     private fun resetBoxes() {

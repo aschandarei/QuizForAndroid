@@ -7,4 +7,7 @@
     <string name="wrong">Wrong!</string>
     <string name="correct">Correct!</string>
     <string name="incomplete">Not complete!</string>
+    <string name="quiz_file_name">quiz.json</string>
+    <string name="quiz_file_missing">Quiz file (%1$s/%2$s) was not found!</string>
+    <string name="quiz_setup">This app needs Quiz file (%1$s) in folder %2$s.\n\nPlease provide suitable quiz file (%2$s/%1$s).\n\nPlease refer to https://github.com/aschandarei/QuizForAndroid for more information</string>
 </resources>
