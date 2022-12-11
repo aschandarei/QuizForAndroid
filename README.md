@@ -11,13 +11,14 @@ The JSON Structure is slightly different from the json for Desktop (Windows) app
 ```
   {
     "name": "Place the name of your quiz here",
-    "questions": [ <--- questions as array
+    "cheat": false                                      <--- enable cheating by setting "true" here
+    "questions": [                                      <--- questions array
       {
-        "content": "First question", <--- question content
-        "answers": [ <--- answers as array
+        "content": "First question",                    <--- question content
+        "answers": [                                    <--- answers array
           {
-            "content": "First answer", <--- answer content
-            "correct": false <--- this answer is not correct
+            "content": "First answer",                  <--- answer content
+            "correct": false                            <--- this answer is not correct
           },
           {
             "content": "Second answer",
@@ -25,8 +26,8 @@ The JSON Structure is slightly different from the json for Desktop (Windows) app
           },
           {
             "content": "Correct answer",
-            "correct": true <--- this is the correct answer (more than one answer can be marked as correct)
-          }
+            "correct": true                             <--- this is the correct answer
+          }                                                  (more than one answer can be marked as correct)
         ]
       },
       ...
@@ -38,6 +39,6 @@ Every correct answer will count as one point, so the maximal achievable points m
 
 The app calculates achieved scores and percentage after every answered question (press of button Next)
 
-Cheating is possible. Button Reveal will show which answers are correct.
+Cheating is possible if enabled in the quiz.json. Button Reveal will show which answers are correct.
 
 Button Back allows to go one question back - while resetting the achieved points for that question.
